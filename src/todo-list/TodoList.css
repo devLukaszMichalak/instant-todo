@@ -1,0 +1,6 @@
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    max-height: 96svh;
+}
