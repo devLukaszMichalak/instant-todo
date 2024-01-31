@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Barlow-Regulr';
-    src: url('/public/Barlow-Regular.ttf') format('truetype');
+    src: url('/src/assets/Barlow-Regular.ttf') format('truetype');
 }
 
 * {
