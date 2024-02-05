@@ -1,30 +1,16 @@
-# React + TypeScript + Vite
+# Instant todos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A project motivated by a fact that my girlfries always sends me a shopping list in plain text form and I wanted a quick parser that would give me a nice list with checkboxes and by a fact that i wanted to give React a try.
 
-Currently, two official plugins are available:
+Check it out here: https://instant-todos.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Gude
 
-## Expanding the ESLint configuration
+1. Paste the text and submit
+2. Done. You're todos are ready
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Screenshots of the app
 
-- Configure the top-level `parserOptions` property like this:
+## Mobile
+<img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/d2f8e6a8-309f-427c-ab28-fc1e2f42216f" width="200"> <img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/649b4a46-9be6-473f-aa7f-a7802e15b585" width="200">
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
