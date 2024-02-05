@@ -4,10 +4,10 @@ A project motivated by the fact that my girlfriend always sends me shopping list
 
 Check it out here: https://instant-todos.web.app/
 
-## Gude
+## Guide
 
 1. Paste the text and submit
-2. Done. You're todos are ready
+2. Done. Your todos are ready
 
 # Screenshots of the app
 
