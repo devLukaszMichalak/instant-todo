@@ -13,19 +13,19 @@
     padding-bottom: 9px;
 }
 
-[type="checkbox"] {
+.x-check {
     position: absolute;
     opacity: 0.01;
 }
 
-[type="checkbox"] + label {
+.x-check + label {
     position: relative;
     padding-left: 2.3em;
     line-height: 1.7;
     cursor: pointer;
 }
 
-[type="checkbox"] + label:before {
+.x-check + label:before {
     content: '';
     position: absolute;
     left: 0.05em;
@@ -38,7 +38,7 @@
     transition: all .275s;
 }
 
-[type="checkbox"] + label:after {
+.x-check + label:after {
     content: '✕';
     position: absolute;
     top: .48em;
@@ -48,12 +48,12 @@
     transition: all .2s;
 }
 
-[type="checkbox"]:not(:checked) + label:after {
+.x-check:not(:checked) + label:after {
     opacity: 0;
     transform: scale(0) rotate(45deg);
 }
 
-[type="checkbox"]:checked + label:after {
+.x-check:checked + label:after {
     opacity: 1;
     transform: scale(1) rotate(0);
 }

@@ -8,6 +8,7 @@ function TodoItem({index, todo}: { index: number, todo: string }) {
   return (
     <div className="todo-container">
       <input type="checkbox"
+             className="x-check"
              id={'' + index}
              checked={isDone}
              onChange={(e) => setIsDone(e.target.checked)}
