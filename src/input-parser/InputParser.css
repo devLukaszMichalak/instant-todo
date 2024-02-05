@@ -16,3 +16,7 @@
     border-radius: 8px;
     border: 2px solid var(--black);
 }
+
+.input-container textarea:focus-visible {
+    outline: 2px dotted var(--black);
+}
