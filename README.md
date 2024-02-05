@@ -1,6 +1,6 @@
 # Instant todos
 
-A project motivated by a fact that my girlfries always sends me a shopping list in plain text form and I wanted a quick parser that would give me a nice list with checkboxes and by a fact that i wanted to give React a try.
+A project motivated by the fact that my girlfriend always sends me shopping lists in plain text and needed a fast parser that would give me a nice list with checkboxes. I also wanted to give React a try.
 
 Check it out here: https://instant-todos.web.app/
 
