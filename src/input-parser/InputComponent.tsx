@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import './InputParser.css';
+import { useNavigate } from 'react-router-dom';
 
-function InputParser({parseInput}: { parseInput: (s: string) => void }) {
+function InputComponent() {
   
   const [todoText, setTodoText] = useState<string>('');
+  const navigate = useNavigate();
+  
+  const navigateToList = () => navigate(btoa(todoText));
   
   return (
     <div className="input-container">
@@ -12,9 +16,9 @@ function InputParser({parseInput}: { parseInput: (s: string) => void }) {
         value={todoText}
         onChange={(e) => setTodoText(e.target.value)}
       />
-      <button  disabled={todoText.length === 0} onClick={() => parseInput(todoText)}>Submit!</button>
+      <button disabled={todoText.length === 0} onClick={() => navigateToList()}>Submit!</button>
     </div>
   );
 }
 
-export default InputParser;
+export default InputComponent;
