@@ -7,7 +7,7 @@ function InputComponent() {
   const [todoText, setTodoText] = useState<string>('');
   const navigate = useNavigate();
   
-  const navigateToList = () => navigate(btoa(todoText));
+  const navigateToList = () => navigate(btoa(encodeURI(todoText)));
   
   return (
     <div className="input-container">

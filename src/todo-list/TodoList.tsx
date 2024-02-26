@@ -6,7 +6,7 @@ function TodoList() {
   
   const {data} = useParams();
   
-  const todos = atob(data ?? '')
+  const todos = decodeURI(atob(data ?? ''))
     .split('\n')
     .filter(s => s.length > 0)
   
