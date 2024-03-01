@@ -4,3 +4,8 @@
     gap: 22px;
     max-height: 96svh;
 }
+
+.items + button {
+    margin-top: 22px;
+    width: 100%;
+}

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import './InputParser.css';
 import { useNavigate } from 'react-router-dom';
+import { useTodos } from '../common/hooks/useTodos.ts';
 
-function InputComponent() {
+function InputParser() {
   
-  const [todoText, setTodoText] = useState<string>('');
+  const todos = useTodos();
+  const [todoText, setTodoText] = useState<string>(todos.join('\n'));
   const navigate = useNavigate();
   
-  const navigateToList = () => navigate(btoa(encodeURI(todoText)));
+  const navigateToDisplay = () => navigate(`/display/${btoa(encodeURI(todoText))}`);
   
   return (
     <div className="input-container">
@@ -16,9 +18,9 @@ function InputComponent() {
         value={todoText}
         onChange={(e) => setTodoText(e.target.value)}
       />
-      <button disabled={todoText.length === 0} onClick={() => navigateToList()}>Submit!</button>
+      <button disabled={todoText.length === 0} onClick={navigateToDisplay}>Submit!</button>
     </div>
   );
 }
 
-export default InputComponent;
+export default InputParser;

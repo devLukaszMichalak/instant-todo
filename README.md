@@ -2,12 +2,15 @@
 
 A project motivated by the fact that my girlfriend always sends me shopping lists in plain text and needed a fast parser that would give me a nice list with checkboxes. I also wanted to give React a try.
 
-Check it out here: https://instant-todos.web.app/
+Check it out here: https://instant-todos.web.app/display/QnJlYWQlMEFtaWxrJTBBY2hvY29sYXRl?2=x
 
 ## Guide
 
 1. Paste the text and submit
 2. Done. Your todos are ready
+
+You can share the link and the whole state of the to-do list will be remembered!
+Keep in mind that editing resets the state
 
 # Screenshots of the app
 

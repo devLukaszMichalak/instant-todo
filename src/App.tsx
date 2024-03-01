@@ -1,15 +1,16 @@
 import './App.css';
-import InputArea from './input-parser/InputComponent.tsx';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import TodoList from './todo-list/TodoList.tsx';
+import InputParser from './input-parser/InputParser.tsx';
 
 function App() {
   
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<InputArea/>}/>
-        <Route path=":data" element={<TodoList/>}/>
+        <Route path="edit/:data?" element={<InputParser/>}/>
+        <Route path="display/:data" element={<TodoList/>}/>
+        <Route path="*" element={<Navigate to="/edit/"/>}/>
       </Routes>
     </BrowserRouter>
   );
