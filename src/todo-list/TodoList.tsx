@@ -17,15 +17,15 @@ function TodoList() {
   const navigateToEdit = () => navigate(`/edit/${data}`);
   
   const copyShareLink = () => {
-    if (!!navigator?.canShare && navigator.canShare()) {
-      navigator.share({title: 'Instant To-dos', url: location.href});
+    if (navigator.share) {
+      navigator.share({title: 'Instant To-dos', text: 'Check out those to-dos!', url: location.href}).then();
     } else {
       navigator.clipboard.writeText(location.href).then();
     }
   };
   
   return (
-    <>
+    <div className="todo-list-container">
       <div className="items">
         {todos.map((todo, index) =>
           <TodoItem key={index} index={index} todo={todo} wasDone={getWasDone(index)}></TodoItem>
@@ -35,8 +35,7 @@ function TodoList() {
         <button onClick={navigateToEdit}><EditIcon/> Edit</button>
         <button onClick={copyShareLink}><ShareIcon/> Share</button>
       </div>
-    </>
-  
+    </div>
   );
 }
 

@@ -12,17 +12,18 @@
 :root {
     --black: #1a1a1a;
     --light: wheat;
+    --background: #fffaed;;
 }
 
 body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100svh;
-    width: 100svw;
-    overflow-x: hidden;
-
+    padding: 0;
+    background-color: var(--background);
 }
 
 button {
@@ -40,6 +41,7 @@ button {
 
 button:hover {
     border-color: var(--light);
+    box-shadow: 0 0 1px 1px var(--black);
 }
 
 button:disabled {

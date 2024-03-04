@@ -6,13 +6,15 @@ import InputParser from './input-parser/InputParser.tsx';
 function App() {
   
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="edit/:data?" element={<InputParser/>}/>
-        <Route path="display/:data" element={<TodoList/>}/>
-        <Route path="*" element={<Navigate to="/edit/"/>}/>
-      </Routes>
-    </BrowserRouter>
+    <div className="router">
+      <BrowserRouter>
+        <Routes>
+          <Route path="edit/:data?" element={<InputParser/>}/>
+          <Route path="display/:data" element={<TodoList/>}/>
+          <Route path="*" element={<Navigate to="/edit/"/>}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
