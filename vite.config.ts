@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'Instant To-dos',
         short_name: 'To-dos',
         description: 'A to-do parser with sharable links',
-        theme_color: 'wheat',
+        theme_color: '#fffaed',
         icons: [
           {
             src: 'assets/icons/launchericon-512-512.png',
