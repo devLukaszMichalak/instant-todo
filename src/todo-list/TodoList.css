@@ -8,4 +8,5 @@
 .items + button {
     margin-top: 22px;
     width: 100%;
+    min-width: fit-content;
 }

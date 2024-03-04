@@ -2,6 +2,8 @@ import './TodoList.css';
 import TodoItem from './ui/todo-item/TodoItem.tsx';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTodos } from '../common/hooks/useTodos.ts';
+import ShareIcon from '../common/icons/ShareIcon.tsx';
+import EditIcon from '../common/icons/EditIcon.tsx';
 
 function TodoList() {
   
@@ -14,6 +16,14 @@ function TodoList() {
   const {data} = useParams();
   const navigateToEdit = () => navigate(`/edit/${data}`);
   
+  const copyShareLink = () => {
+    if (!!navigator?.canShare && navigator.canShare()) {
+      navigator.share({title: 'Instant To-dos', url: location.href});
+    } else {
+      navigator.clipboard.writeText(location.href).then();
+    }
+  };
+  
   return (
     <>
       <div className="items">
@@ -21,7 +31,10 @@ function TodoList() {
           <TodoItem key={index} index={index} todo={todo} wasDone={getWasDone(index)}></TodoItem>
         )}
       </div>
-      <button onClick={navigateToEdit}>Edit</button>
+      <div className="buttons">
+        <button onClick={navigateToEdit}><EditIcon/> Edit</button>
+        <button onClick={copyShareLink}><ShareIcon/> Share</button>
+      </div>
     </>
   
   );
