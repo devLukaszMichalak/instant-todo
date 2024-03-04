@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './InputParser.css';
 import { useNavigate } from 'react-router-dom';
 import { useTodos } from '../common/hooks/useTodos.ts';
+import DoneIcon from '../common/icons/DoneIcon.tsx';
 
 function InputParser() {
   
@@ -18,7 +19,7 @@ function InputParser() {
         value={todoText}
         onChange={(e) => setTodoText(e.target.value)}
       />
-      <button disabled={todoText.length === 0} onClick={navigateToDisplay}>Submit!</button>
+      <button disabled={todoText.length === 0} onClick={navigateToDisplay}><DoneIcon/> Submit!</button>
     </div>
   );
 }
