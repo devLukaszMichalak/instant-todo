@@ -5,6 +5,7 @@ import EditIcon from '../common/icons/EditIcon.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useDbTodoText } from '../common/hooks/useDbTodoText.ts';
 import { useMemo } from 'react';
+import { get } from 'idb-keyval';
 
 function TodoList() {
   
@@ -17,8 +18,21 @@ function TodoList() {
   );
   
   const handleNavigateToEdit = () => navigate(`/edit`);
-  const handleCopyShareLink = () => {
-    const link: string = `https://instant-todos.web.app/share/${btoa(encodeURI(dbTodoText))}`;
+  
+  async function makeSearchParams() {
+    let params = '?';
+    for (let i = 0; i < Array(todos.length - 1).length; i++) {
+      const isKeyDone = await get(String(i));
+      if (isKeyDone) {
+        params += `${i}=x&`;
+      }
+    }
+    return params.slice(0, -1);
+  }
+  
+  const handleCopyShareLink = async () => {
+    const params = await makeSearchParams();
+    const link: string = `https://instant-todos.web.app/share/${btoa(encodeURI(dbTodoText))}${params}`;
     
     if (navigator.share) {
       navigator.share({title: 'Instant To-dos', url: link}).then();
