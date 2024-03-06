@@ -2,7 +2,9 @@
 
 A project motivated by the fact that my girlfriend always sends me shopping lists in plain text and needed a fast parser that would give me a nice list with checkboxes. I also wanted to give React a try.
 
-Check it out here: https://instant-todos.web.app/display/QnJlYWQlMEFtaWxrJTBBY2hvY29sYXRl?2=x
+Check it out here: https://instant-todos.web.app/share/QnJlYWQlMEFtaWxrJTBBY2hvY29sYXRl?2=x
+
+It's a PWA, so feel free to install it
 
 ## Guide
 
@@ -15,5 +17,4 @@ Keep in mind that editing resets the state
 # Screenshots of the app
 
 ## Mobile
-<img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/d2f8e6a8-309f-427c-ab28-fc1e2f42216f" width="200"> <img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/649b4a46-9be6-473f-aa7f-a7802e15b585" width="200">
-
+<img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/5e84693e-4216-4115-9f01-424c12e31d46" width="200"> <img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/c2851968-6e8a-4163-b79f-bf474131c063" width="200">
