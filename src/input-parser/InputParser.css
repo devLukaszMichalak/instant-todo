@@ -13,8 +13,8 @@
 }
 
 .input-container textarea {
-    min-height: 45vh;
-    font-size: 20px;
+    min-height: 45svh;
+    font-size: 22px;
     background-color: var(--background);
     resize: vertical;
     border-radius: 8px;

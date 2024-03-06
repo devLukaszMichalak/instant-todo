@@ -29,10 +29,12 @@ function TodoList() {
   
   return (
     <div className="todo-list-container">
-      <div className="items">
-        {todos.map((todo, index) =>
-          <TodoItem key={index} index={index} todo={todo}></TodoItem>
-        )}
+      <div className="items-container">
+        <div className="items">
+          {todos.map((todo, index) =>
+            <TodoItem key={index} index={index} todo={todo}></TodoItem>
+          )}
+        </div>
       </div>
       <div className="buttons">
         <button onClick={handleNavigateToEdit}><EditIcon/> Edit</button>
