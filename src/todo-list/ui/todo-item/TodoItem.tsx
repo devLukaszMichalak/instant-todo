@@ -12,7 +12,7 @@ function TodoItem({index, todo}: Props) {
   
   useEffect(() => {
     get(key).then(dbIsDone => setIsDone(!!dbIsDone));
-  }, []);
+  }, [key]);
   
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const isChecked = e.target.checked;

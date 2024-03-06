@@ -1,8 +1,8 @@
 import './InputParser.css';
-import { useNavigate } from 'react-router-dom';
 import DoneIcon from '../common/icons/DoneIcon.tsx';
-import { useDbTodoText } from '../common/hooks/useDbTodoText.ts';
+import { useNavigate } from 'react-router-dom';
 import { ChangeEvent } from 'react';
+import { useDbTodoText } from '../common/hooks/useDbTodoText.ts';
 
 function InputParser() {
   

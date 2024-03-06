@@ -12,7 +12,7 @@ const ShareParser = () => {
   
   useEffect(() => {
     set(todoTextDbKey, todoText).then(() => navigate('/display'));
-  }, []);
+  }, [navigate, todoText]);
   
   return <>Loading...</>;
 };
