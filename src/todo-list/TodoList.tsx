@@ -21,7 +21,7 @@ function TodoList() {
     const link: string = `https://instant-todos.web.app/share/${btoa(encodeURI(dbTodoText))}`;
     
     if (navigator.share) {
-      navigator.share({title: 'Instant To-dos', text: 'Check out those to-dos!', url: link}).then();
+      navigator.share({title: 'Instant To-dos', url: link}).then();
     } else {
       navigator.clipboard.writeText(link).then();
     }
