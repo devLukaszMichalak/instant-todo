@@ -1,24 +1,22 @@
 import './TodoItem.css';
-import { ChangeEvent, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { get, set } from 'idb-keyval';
 
-type Props = { index: number, todo: string, wasDone: boolean }
+type Props = { index: number, todo: string }
 
-function TodoItem({index, todo, wasDone}: Props) {
+function TodoItem({index, todo}: Props) {
   
   const key = String(index);
   
-  const [isDone, setIsDone] = useState(wasDone);
-  const [, setSearchParams] = useSearchParams();
+  const [isDone, setIsDone] = useState(false);
+  
+  useEffect(() => {
+    get(key).then(dbIsDone => setIsDone(!!dbIsDone));
+  }, []);
   
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const isChecked = e.target.checked;
-    
-    setIsDone(isChecked);
-    setSearchParams(params => {
-      isChecked ? params.set(key, 'x') : params.delete(key);
-      return params;
-    });
+    set(key, isChecked).then(() => setIsDone(isChecked));
   };
   
   return (

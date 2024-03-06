@@ -1,25 +1,25 @@
-import { useState } from 'react';
 import './InputParser.css';
 import { useNavigate } from 'react-router-dom';
-import { useTodos } from '../common/hooks/useTodos.ts';
 import DoneIcon from '../common/icons/DoneIcon.tsx';
+import { useDbTodoText } from '../common/hooks/useDbTodoText.ts';
+import { ChangeEvent } from 'react';
 
 function InputParser() {
   
-  const todos = useTodos();
-  const [todoText, setTodoText] = useState<string>(todos.join('\n'));
+  const [dbTodoText, setDbTodoText] = useDbTodoText();
   const navigate = useNavigate();
   
-  const navigateToDisplay = () => navigate(`/display/${btoa(encodeURI(todoText))}`);
+  const handleNavigateToDisplay = () => navigate(`/display`);
+  const handleInput = (e: ChangeEvent<HTMLTextAreaElement>) => setDbTodoText(e.target.value);
   
   return (
     <div className="input-container">
       <div>Enter here the text you want to make todos from:</div>
       <textarea
-        value={todoText}
-        onChange={(e) => setTodoText(e.target.value)}
+        value={dbTodoText}
+        onChange={handleInput}
       />
-      <button disabled={todoText.length === 0} onClick={navigateToDisplay}><DoneIcon/> Submit!</button>
+      <button disabled={dbTodoText.length === 0} onClick={handleNavigateToDisplay}><DoneIcon/> Submit!</button>
     </div>
   );
 }

@@ -4,8 +4,9 @@
 }
 
 .todo-container  {
-    scale: 1.3;
     white-space: break-spaces;
+    flex-shrink: 0;
+    font-size: 18px;
 }
 
 .todo-container:last-child  {
@@ -27,10 +28,10 @@
 .x-check + label:before {
     content: '';
     position: absolute;
-    left: 0.05em;
-    top: -0.05em;
-    width: 1.4em;
-    height: 1.4em;
+    left: 0.0em;
+    top: -0.2em;
+    width: 1.6em;
+    height: 1.6em;
     border: 1px solid var(--black);
     border-radius: .3em;
     box-shadow: none;
