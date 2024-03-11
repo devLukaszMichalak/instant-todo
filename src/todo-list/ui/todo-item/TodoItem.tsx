@@ -1,33 +1,32 @@
 import './TodoItem.css';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useId, useState } from 'react';
 import { get, set } from 'idb-keyval';
 
-type Props = { index: number, todo: string }
+type Props = { dbKey: string, todo: string }
 
-function TodoItem({index, todo}: Props) {
+function TodoItem({dbKey, todo}: Props) {
   
-  const key = String(index);
-  
+  const id = useId();
   const [isDone, setIsDone] = useState(false);
   
   useEffect(() => {
-    get(key).then(dbIsDone => setIsDone(!!dbIsDone));
-  }, [key]);
+    get(dbKey).then(dbIsDone => setIsDone(!!dbIsDone));
+  }, [dbKey]);
   
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const isChecked = e.target.checked;
-    set(key, isChecked).then(() => setIsDone(isChecked));
+    set(dbKey, isChecked).then(() => setIsDone(isChecked));
   };
   
   return (
     <div className="todo-container">
       <input type="checkbox"
              className="x-check"
-             id={key}
+             id={id}
              checked={isDone}
              onChange={handleCheckboxChange}
       />
-      <label htmlFor={key} className={isDone ? 'done' : ''}>{todo.toUpperCase()}</label>
+      <label htmlFor={id} className={isDone ? 'done' : ''}>{todo.toUpperCase()}</label>
     </div>
   );
 }

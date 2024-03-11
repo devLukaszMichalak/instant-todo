@@ -13,13 +13,19 @@ const ShareParser = () => {
   
   useEffect(() => {
     
-    clear().then(async () => {
-      for (const key of searchParams.keys()) {
-        await set(key, true);
-      }
-      await set(todoTextDbKey, todoText);
+    const setDbStateFromParams = async () => {
+      await clear();
       
-    }).then(() => navigate('/display'));
+      const shareItemsToSave = Array
+        .from(searchParams.keys())
+        .map(key => set(key, true));
+      
+      shareItemsToSave.push(set(todoTextDbKey, todoText));
+      
+      await Promise.all(shareItemsToSave);
+    };
+    
+    setDbStateFromParams().then(() => navigate('/display'));
     
   }, [navigate, todoText, searchParams]);
   

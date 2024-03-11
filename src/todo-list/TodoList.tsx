@@ -46,7 +46,7 @@ function TodoList() {
       <div className="items-container">
         <div className="items">
           {todos.map((todo, index) =>
-            <TodoItem key={index} index={index} todo={todo}></TodoItem>
+            <TodoItem key={index} dbKey={String(index)} todo={todo}></TodoItem>
           )}
         </div>
       </div>
