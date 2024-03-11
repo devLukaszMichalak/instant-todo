@@ -1,36 +1,40 @@
 import './InputParser.css';
 import DoneIcon from '../common/icons/DoneIcon.tsx';
 import { useNavigate } from 'react-router-dom';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { useDbTodoText } from '../common/hooks/useDbTodoText.ts';
+import { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react';
 
 function InputParser() {
   
   const [dbTodoText, setDbTodoText] = useDbTodoText();
-  const [todoText, setTodoText] = useState('');
+  const [cursor, setCursor] = useState<number>();
+  const textareaRef = useRef<HTMLTextAreaElement>();
   
   useEffect(() => {
-    setTodoText(dbTodoText);
-  }, [dbTodoText]);
+    const textarea = textareaRef.current;
+    if (textarea && cursor) {
+      textarea.setSelectionRange(cursor, cursor);
+    }
+  }, [textareaRef, cursor, dbTodoText]);
   
   const navigate = useNavigate();
   
   const handleNavigateToDisplay = () => navigate(`/display`);
   
-  const handleInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    setTodoText(value);
-    setDbTodoText(value);
+  const handleInputChane = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCursor(e.target.selectionStart);
+    setDbTodoText(e.target.value);
   };
   
   return (
     <div className="input-container">
       <div>Enter here the text you want to make todos from:</div>
       <textarea
-        value={todoText}
-        onChange={handleInput}
+        ref={textareaRef as MutableRefObject<HTMLTextAreaElement>}
+        defaultValue={dbTodoText}
+        onChange={handleInputChane}
       />
-      <button disabled={todoText.length === 0} onClick={handleNavigateToDisplay}><DoneIcon/> Submit!</button>
+      <button disabled={dbTodoText.length === 0} onClick={handleNavigateToDisplay}><DoneIcon/> Submit!</button>
     </div>
   );
 }
