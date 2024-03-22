@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import InputParser from './input-parser/InputParser.tsx';
 import ShareParser from './share-parser/ShareParser.tsx';
-import TodoCarrousel from './todo-arrousel/TodoCarrousel.tsx';
+import TodoCarrousel from './todo-carrousel/TodoCarrousel.tsx';
 
 function App() {
   
