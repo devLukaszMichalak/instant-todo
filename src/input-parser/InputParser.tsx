@@ -1,40 +1,46 @@
 import './InputParser.css';
 import DoneIcon from '../common/icons/DoneIcon.tsx';
+import ClearIcon from '../common/icons/ClearIcon.tsx';
 import { useNavigate } from 'react-router-dom';
-import { useDbTodoText } from '../common/hooks/useDbTodoText.ts';
-import { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { ChangeEvent } from 'react';
+import { IconStyle } from '../common/icons/icon-style.ts';
+import { currentPageAtom, pagesAtom } from '../common/atoms/atoms.ts';
+import { useAtom, useAtomValue } from 'jotai';
+import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
 
 function InputParser() {
   
-  const [dbTodoText, setDbTodoText] = useDbTodoText();
-  const [cursor, setCursor] = useState<number>();
-  const textareaRef = useRef<HTMLTextAreaElement>();
-  
-  useEffect(() => {
-    const textarea = textareaRef.current;
-    if (textarea && cursor) {
-      textarea.setSelectionRange(cursor, cursor);
-    }
-  }, [textareaRef, cursor, dbTodoText]);
+  const [pages, setPages] = useAtom(pagesAtom);
+  const currentPage = useAtomValue(currentPageAtom);
+  const [currentPageTodoText, setCurrentPageTodoText] = useCurrentPageTodoText(currentPage);
   
   const navigate = useNavigate();
   
-  const handleNavigateToDisplay = () => navigate(`/display`);
-  
-  const handleInputChane = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setCursor(e.target.selectionStart);
-    setDbTodoText(e.target.value);
+  const handleSubmit = async () => {
+    if (!pages.includes(currentPage)) {
+      setPages([...pages, currentPage]);
+    }
+    navigate(`/display`);
   };
+  
+  const handleClear = () => setCurrentPageTodoText('');
+  
+  const handleInputChane = (e: ChangeEvent<HTMLTextAreaElement>) => setCurrentPageTodoText(e.target.value);
+  
+  const isEmpty = () => currentPageTodoText.length === 0;
   
   return (
     <div className="input-container">
       <div>Enter here the text you want to make todos from:</div>
       <textarea
-        ref={textareaRef as MutableRefObject<HTMLTextAreaElement>}
-        defaultValue={dbTodoText}
+        defaultValue={currentPageTodoText}
         onChange={handleInputChane}
       />
-      <button disabled={dbTodoText.length === 0} onClick={handleNavigateToDisplay}><DoneIcon/> Submit!</button>
+      <div className="input-buttons">
+        <button className="primary" disabled={isEmpty()} onClick={handleSubmit}><DoneIcon style={IconStyle.light}/>
+        </button>
+        <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.dark}/></button>
+      </div>
     </div>
   );
 }

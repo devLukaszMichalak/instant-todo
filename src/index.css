@@ -29,25 +29,48 @@ body {
     background-color: var(--background);
 }
 
-button {
+button.primary {
     border-radius: 8px;
     border: 2px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
+    padding: 10px 2px;
+    font-size: 16px;
     font-weight: 500;
     font-family: inherit;
-    background-color: var(--black);
-    color: var(--light);
     cursor: pointer;
     transition: border-color 0.25s;
+    background-color: var(--black);
+    color: var(--light);
 }
 
-button:hover {
+button.primary:hover {
     border-color: var(--light);
     box-shadow: 0 0 1px 1px var(--black);
 }
 
-button:disabled {
+button.primary:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+button.secondary {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    padding: 10px 2px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    background-color: var(--light);
+    color: var(--black);
+}
+
+button.secondary:hover {
+    border-color: var(--black);
+    box-shadow: 0 0 1px 1px var(--light);
+}
+
+button.secondary:disabled {
     opacity: 0.6;
     pointer-events: none;
 }

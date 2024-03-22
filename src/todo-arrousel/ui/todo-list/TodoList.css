@@ -3,18 +3,20 @@
     flex-direction: column;
     gap: 22px;
     padding-bottom: 65px;
+    margin-top: 20px;
 }
 
-.buttons {
-    padding: 22px;
+.todo-list-buttons {
+    padding: 22px 10vw;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     position: fixed;
     bottom: 0;
     background-color: var(--background);
+    width: 80vw;
 }
 
-.buttons button {
+.todo-list-buttons button {
     width: 100%;
     min-width: fit-content;
 }

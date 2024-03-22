@@ -24,3 +24,15 @@
 .input-container textarea:focus-visible {
     outline: 2px dotted var(--black);
 }
+
+.input-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.input-buttons button {
+    font-size: 15px;
+    width: 100%;
+    min-width: fit-content;
+}

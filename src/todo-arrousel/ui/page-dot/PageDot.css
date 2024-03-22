@@ -1,0 +1,9 @@
+.dot-inactive {
+    opacity: 0.5;
+}
+
+.dot {
+    padding: 4px;
+    border-radius: 50%;
+    background-color: var(--black);
+}
