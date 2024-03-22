@@ -82,7 +82,7 @@ function TodoList({pageIndex}: Props) {
       </div>
       
       <div className="todo-list-buttons">
-        <button className="secondary" disabled={(pageIndex !== pageCount - 1) && pageCount !== 1} onClick={handleRemove}><MinusIcon style={IconStyle.dark}/></button>
+        <button className="secondary" disabled={pageCount === 1} onClick={handleRemove}><MinusIcon style={IconStyle.dark}/></button>
         <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.dark}/></button>
         <button className="primary" onClick={handleNavigateToEdit}><EditIcon style={IconStyle.light}/></button>
         <button className="secondary" onClick={handleCopyShareLink}><ShareIcon style={IconStyle.dark}/></button>
