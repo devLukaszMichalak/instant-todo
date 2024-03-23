@@ -3,11 +3,12 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import InputParser from './input-parser/InputParser.tsx';
 import ShareParser from './share-parser/ShareParser.tsx';
 import TodoCarrousel from './todo-carrousel/TodoCarrousel.tsx';
-import { useMemo } from 'react';
+import { useAtomValue } from 'jotai';
+import { defaultRouteAtom } from './common/atoms/atoms.ts';
 
 function App() {
   
-  const defaultRoute = useMemo(() => localStorage.getItem('route')?.replace(/"/g, '') ?? '/edit', []);
+  const defaultRoute = useAtomValue(defaultRouteAtom);
   
   return (
     <div className="router">

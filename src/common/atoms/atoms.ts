@@ -7,10 +7,4 @@ export const pagesAtom = atomWithStorage<number[]>('pages', []);
 
 export const pageCountAtom = atom<number>((get) => get(pagesAtom).length);
 
-const defaultRouteAtom = atomWithStorage<string>('route', '/edit');
-
-export const defaultRouteWriteOnlyAtom = atom(
-  null,
-  (_get, set, update: string) =>
-    set(defaultRouteAtom, update)
-);
+export const defaultRouteAtom = atomWithStorage<string>('route', '/edit', undefined, {getOnInit: true});

@@ -1,7 +1,7 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 import { useSetAtom } from 'jotai';
-import { defaultRouteWriteOnlyAtom } from '../common/atoms/atoms.ts';
+import { defaultRouteAtom } from '../common/atoms/atoms.ts';
 
 const ShareParser = () => {
   
@@ -9,7 +9,7 @@ const ShareParser = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   
-  const setDefaultRoute = useSetAtom(defaultRouteWriteOnlyAtom);
+  const setDefaultRoute = useSetAtom(defaultRouteAtom);
   
   const todoText = useMemo(() => decodeURI(atob(data ?? '')), [data]);
   
