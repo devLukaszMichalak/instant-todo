@@ -9,7 +9,7 @@ type Props = { dbKey: string, todo: string, clear$: Observable<boolean> }
 function TodoItem({dbKey, todo, clear$}: Props) {
   
   const id = useId();
-  const isDoneAtom = useMemo(() => atomWithStorage(dbKey, false), [dbKey]);
+  const isDoneAtom = useMemo(() => atomWithStorage(dbKey, false, undefined, {getOnInit: true}), [dbKey]);
   const [isDone, setIsDone] = useAtom(isDoneAtom);
   
   useEffect(() => {
