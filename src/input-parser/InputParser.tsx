@@ -4,14 +4,16 @@ import ClearIcon from '../common/icons/ClearIcon.tsx';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent } from 'react';
 import { IconStyle } from '../common/icons/icon-style.ts';
-import { currentPageAtom, pagesAtom } from '../common/atoms/atoms.ts';
+import { currentPageAtom, defaultRouteWriteOnlyAtom, pagesAtom } from '../common/atoms/atoms.ts';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
+import { useSetAtom } from 'jotai/index';
 
 function InputParser() {
   
   const [pages, setPages] = useAtom(pagesAtom);
   const currentPage = useAtomValue(currentPageAtom);
+  const setDefaultRoute = useSetAtom(defaultRouteWriteOnlyAtom);
   const [currentPageTodoText, setCurrentPageTodoText] = useCurrentPageTodoText(currentPage);
   
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ function InputParser() {
     if (!pages.includes(currentPage)) {
       setPages([...pages, currentPage]);
     }
+    setDefaultRoute('/display');
     navigate(`/display`);
   };
   

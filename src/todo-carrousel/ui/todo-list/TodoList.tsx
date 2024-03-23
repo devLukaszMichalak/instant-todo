@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { IconStyle } from '../../../common/icons/icon-style.ts';
 import { useCurrentPageTodoText } from '../../../common/hooks/use-current-page-todo-text.ts';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { currentPageAtom, pageCountAtom, pagesAtom } from '../../../common/atoms/atoms.ts';
+import { currentPageAtom, defaultRouteWriteOnlyAtom, pageCountAtom, pagesAtom } from '../../../common/atoms/atoms.ts';
 import MinusIcon from '../../../common/icons/MinusIcon.tsx';
 import PlusIcon from '../../../common/icons/PlusIcon.tsx';
 
@@ -22,6 +22,7 @@ function TodoList({pageIndex}: Props) {
   const [pages, setPages] = useAtom(pagesAtom);
   const pageCount = useAtomValue(pageCountAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
+  const setDefaultRoute = useSetAtom(defaultRouteWriteOnlyAtom);
   
   const [currentPageTodoText, setCurrentPageTodoText] = useCurrentPageTodoText(pageIndex);
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ function TodoList({pageIndex}: Props) {
   
   const handleNewPage = () => {
     setCurrentPage(pageCount);
+    setDefaultRoute('/edit');
     navigate(`/edit`);
   };
   

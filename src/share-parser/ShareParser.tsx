@@ -1,11 +1,15 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
+import { useSetAtom } from 'jotai';
+import { defaultRouteWriteOnlyAtom } from '../common/atoms/atoms.ts';
 
 const ShareParser = () => {
   
   const {data} = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  
+  const setDefaultRoute = useSetAtom(defaultRouteWriteOnlyAtom);
   
   const todoText = useMemo(() => decodeURI(atob(data ?? '')), [data]);
   
@@ -34,8 +38,9 @@ const ShareParser = () => {
     localStorage.setItem(`pages`, pages.length !== 0 ? `[${String(pages)},${pageCount}]` : `[0]`);
     localStorage.setItem(`currentPage`, String(pageCount));
     
+    setDefaultRoute('/display');
     navigate('/display');
-  }, [navigate, pageCount, pages, searchParams, todoText]);
+  }, [navigate, pageCount, pages, searchParams, setDefaultRoute, todoText]);
   
   return <>Loading...</>;
 };
