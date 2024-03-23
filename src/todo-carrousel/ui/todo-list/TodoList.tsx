@@ -12,6 +12,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { currentPageAtom, defaultRouteAtom, pageCountAtom, pagesAtom } from '../../../common/atoms/atoms.ts';
 import MinusIcon from '../../../common/icons/MinusIcon.tsx';
 import PlusIcon from '../../../common/icons/PlusIcon.tsx';
+import { isKeyDone } from '../../../common/atoms/is-done-key.ts';
 
 type Props = { pageIndex: number }
 
@@ -56,8 +57,7 @@ function TodoList({pageIndex}: Props) {
   async function makeSearchParams() {
     let params = '?';
     for (let i = 0; i < todos.length; i++) {
-      const isKeyDone = localStorage.getItem(`${i}-${pageIndex}`) === 'true';
-      if (isKeyDone) {
+      if (isKeyDone(i, pageIndex)) {
         params += `${i}=x&`;
       }
     }
