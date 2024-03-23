@@ -30,7 +30,7 @@ const ShareParser = () => {
     setDefaultRoute('/display');
     
     navigate('/display');
-  }, []);
+  }, [navigate, pageCount, pages, searchParams, setCurrentPage, setCurrentPageTodoText, setDefaultRoute, setPages, todoText]);
   
   return <>Loading...</>;
 };
