@@ -1,0 +1,14 @@
+.todo-list-buttons {
+    padding: 22px 10vw;
+    display: flex;
+    gap: 8px;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--background);
+    width: 80vw;
+}
+
+.todo-list-buttons > button {
+    width: 100%;
+    min-width: fit-content;
+}
