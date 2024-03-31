@@ -6,4 +6,5 @@
     padding: 4px;
     border-radius: 50%;
     background-color: var(--black);
+    transition: opacity linear 100ms;
 }
