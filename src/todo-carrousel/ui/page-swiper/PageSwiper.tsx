@@ -12,8 +12,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   const [isSwiping, setIsSwiping] = useState(false);
   
   const handleTouchStart = useCallback((e: TouchEvent) => {
-    e.preventDefault();
-    
     setStartX(e.touches[0].clientX);
     setStartY(e.touches[0].clientY);
     setIsSwiping(true);
@@ -21,8 +19,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
-      e.preventDefault();
-      
       const endX = e.changedTouches[0].clientX;
       const endY = e.changedTouches[0].clientY;
       const deltaX = endX - startX;
@@ -35,8 +31,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleTouchEnd = useCallback(
     (e: TouchEvent) => {
-      e.preventDefault();
-      
       const endX = e.changedTouches[0].clientX;
       const endY = e.changedTouches[0].clientY;
       const deltaX = endX - startX;
@@ -49,8 +43,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
     }, [startX, startY, isSwiping, onSwipeEnd]);
   
   const handleSwipeStart = useCallback((e: MouseEvent) => {
-    e.preventDefault();
-    
     setStartX(e.clientX);
     setStartY(e.clientY);
     setIsSwiping(true);
@@ -58,8 +50,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleSwipeMove = useCallback(
     (e: MouseEvent) => {
-      e.preventDefault();
-      
       const endX = e.clientX;
       const endY = e.clientY;
       const deltaX = endX - startX;
@@ -72,8 +62,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleSwipeEnd = useCallback(
     (e: MouseEvent) => {
-      e.preventDefault();
-      
       const endX = e.clientX;
       const endY = e.clientY;
       const deltaX = endX - startX;
