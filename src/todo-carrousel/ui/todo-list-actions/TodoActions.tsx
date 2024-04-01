@@ -11,6 +11,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai/index';
 import { currentPageAtom, defaultRouteAtom, pageCountAtom, pagesAtom } from '../../../common/atoms/atoms.ts';
 import { useNavigate } from 'react-router-dom';
 import { useCurrentPageTodoText } from '../../../common/hooks/use-current-page-todo-text.ts';
+import { motion } from 'framer-motion';
 
 type Props = {
   clearSubject: Subject<boolean>;
@@ -71,14 +72,20 @@ const TodoActions = ({clearSubject, todos, pageIndex}: Props) => {
   };
   
   return (
-    <div className="todo-list-buttons">
+    <motion.div
+      className="todo-list-buttons"
+      initial={{opacity: 0, scale: 1.2}}
+      animate={{opacity: 1, scale: 1.0}}
+      exit={{opacity: 0, scale: 0.8}}
+      transition={{duration: 0.15}}
+    >
       <button className="secondary" disabled={(pageIndex !== pageCount - 1) || pageCount === 1} onClick={handleRemove}>
         <MinusIcon style={IconStyle.dark}/></button>
       <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.dark}/></button>
       <button className="primary" onClick={handleNavigateToEdit}><EditIcon style={IconStyle.light}/></button>
       <button className="secondary" onClick={handleCopyShareLink}><ShareIcon style={IconStyle.dark}/></button>
       <button className="secondary" onClick={handleNewPage}><PlusIcon style={IconStyle.dark}/></button>
-    </div>
+    </motion.div>
   );
 };
 
