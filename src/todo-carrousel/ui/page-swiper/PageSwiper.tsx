@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { SwipeCoordinates } from './SwipeCords.ts';
 
 type Props = PropsWithChildren<{
@@ -7,16 +7,11 @@ type Props = PropsWithChildren<{
 }>;
 
 const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
   
   const handleTouchStart = useCallback((e: TouchEvent) => {
-    if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
-      return;
-    }
-    
     e.preventDefault();
     
     setStartX(e.touches[0].clientX);
@@ -26,10 +21,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
-      if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
-        return;
-      }
-      
       e.preventDefault();
       
       const endX = e.changedTouches[0].clientX;
@@ -44,10 +35,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleTouchEnd = useCallback(
     (e: TouchEvent) => {
-      if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
-        return;
-      }
-      
       e.preventDefault();
       
       const endX = e.changedTouches[0].clientX;
@@ -62,10 +49,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
     }, [startX, startY, isSwiping, onSwipeEnd]);
   
   const handleSwipeStart = useCallback((e: MouseEvent) => {
-    if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
-      return;
-    }
-    
     e.preventDefault();
     
     setStartX(e.clientX);
@@ -75,10 +58,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleSwipeMove = useCallback(
     (e: MouseEvent) => {
-      if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
-        return;
-      }
-      
       e.preventDefault();
       
       const endX = e.clientX;
@@ -93,10 +72,6 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
   
   const handleSwipeEnd = useCallback(
     (e: MouseEvent) => {
-      if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
-        return;
-      }
-      
       e.preventDefault();
       
       const endX = e.clientX;
@@ -137,7 +112,7 @@ const PageSwiper = ({children, onSwiping, onSwipeEnd}: Props) => {
     };
   }, [handleSwipeEnd, handleSwipeMove, handleSwipeStart, handleTouchEnd, handleTouchMove, handleTouchStart]);
   
-  return <div ref={wrapperRef}>{children}</div>;
+  return children;
 };
 
 export default PageSwiper;
