@@ -1,6 +1,5 @@
 version: 2.1
-orbs:
-  bun: ksylvest/bun@1.0.1
+
 jobs:
   build_and_deploy:
     docker:
@@ -11,22 +10,22 @@ jobs:
       - restore_cache:
           name: Restore cache
           keys:
-            - bun-cache-{{ checksum "bun.lockb" }}
-            - bun-cache-
+            - npm-cache-{{ checksum "package-lock.json" }}
+            - npm-cache-
       - run:
           name: Install dependencies
-          command: bun i
+          command: npm install
       - save_cache:
           name: Save cache
-          key: bun-cache-{{ checksum "bun.lockb" }}
+          key: npm-cache-{{ checksum "package-lock.json" }}
           paths:
-            - ~/.bun
+            - ~/.npm
       - run:
           name: Lint files
-          command: bun run lint
+          command: npm run lint
       - run:
           name: Build project
-          command: bun run build
+          command: npm run build
       - run:
           name: Make keys file
           command: echo ${TODO_KEYS} > keys.json
