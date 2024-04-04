@@ -15,7 +15,7 @@ jobs:
             - bun-cache-
       - run:
           name: Install dependencies
-          command: bun install
+          command: bun i
       - save_cache:
           name: Save cache
           key: bun-cache-{{ checksum "bun.lockb" }}
