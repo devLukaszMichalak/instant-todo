@@ -1,6 +1,7 @@
 import './InputParser.css';
 import DoneIcon from '../common/icons/DoneIcon.tsx';
 import ClearIcon from '../common/icons/ClearIcon.tsx';
+import FadeDiv from '../common/fade-div/FadeDiv.tsx';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent } from 'react';
 import { IconStyle } from '../common/icons/icon-style.ts';
@@ -8,7 +9,6 @@ import { currentPageAtom, defaultRouteAtom, pagesAtom } from '../common/atoms/at
 import { useAtom, useAtomValue } from 'jotai';
 import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
 import { useSetAtom } from 'jotai/index';
-import { motion } from 'framer-motion';
 
 function InputParser() {
   
@@ -34,13 +34,7 @@ function InputParser() {
   const isEmpty = () => currentPageTodoText.length === 0;
   
   return (
-    <motion.div
-      className="input-container"
-      initial={{opacity: 0, scale: 1.2}}
-      animate={{opacity: 1, scale: 1.0}}
-      exit={{opacity: 0, scale: 0.8}}
-      transition={{duration: 0.15}}
-    >
+    <FadeDiv className="input-container">
       <div>Enter here the text you want to make todos from:</div>
       <textarea
         defaultValue={currentPageTodoText}
@@ -51,7 +45,7 @@ function InputParser() {
         </button>
         <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.dark}/></button>
       </div>
-    </motion.div>
+    </FadeDiv>
   );
 }
 

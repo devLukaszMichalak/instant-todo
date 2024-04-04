@@ -1,15 +1,16 @@
 import './TodoCarrousel.css';
-import TodoList from './ui/todo-list/TodoList.tsx';
 import { useAtom, useAtomValue } from 'jotai';
 import { currentPageAtom, pageCountAtom } from '../common/atoms/atoms.ts';
-import PageDot from './ui/page-dot/PageDot.tsx';
-import TodoActions from './ui/todo-list-actions/TodoActions.tsx';
 import { Subject } from 'rxjs';
 import { useMemo } from 'react';
 import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
-import PageSwiper from './ui/page-swiper/PageSwiper.tsx';
 import { SwipeCoordinates } from './ui/page-swiper/SwipeCords.ts';
-import { motion, useAnimate } from 'framer-motion';
+import { useAnimate } from 'framer-motion';
+import FadeDiv from '../common/fade-div/FadeDiv.tsx';
+import TodoList from './ui/todo-list/TodoList.tsx';
+import PageDot from './ui/page-dot/PageDot.tsx';
+import TodoActions from './ui/todo-list-actions/TodoActions.tsx';
+import PageSwiper from './ui/page-swiper/PageSwiper.tsx';
 
 const TodoCarrousel = () => {
   
@@ -39,12 +40,12 @@ const TodoCarrousel = () => {
       await animate(scope.current, {opacity: 0}, {duration: 0.15});
       handlePrev();
       await animate(scope.current, {x: 0}, {duration: 0});
-      await animate(scope.current, {opacity: 1}, {duration: 0.15});
+      animate(scope.current, {opacity: 1}, {duration: 0.15});
     } else if (-deltaX >= window.innerWidth / 4 && canShowNext) {
       await animate(scope.current, {opacity: 0}, {duration: 0.15});
       handleNext();
       await animate(scope.current, {x: 0}, {duration: 0});
-      await animate(scope.current, {opacity: 1}, {duration: 0.15});
+      animate(scope.current, {opacity: 1}, {duration: 0.15});
     } else {
       animate(scope.current, {x: 0});
     }
@@ -66,27 +67,13 @@ const TodoCarrousel = () => {
   return (
     <PageSwiper onSwipeEnd={handleSwipeEnd} onSwiping={handleSwiping}>
       <div className="carrousel-container">
-        <motion.div
-          className="dots"
-          initial={{opacity: 0, scale: 1.2}}
-          animate={{opacity: 1, scale: 1.0}}
-          exit={{opacity: 0, scale: 0.8}}
-          transition={{duration: 0.15}}
-        >
+        <FadeDiv className="dots">
           {[...Array(pageCount).keys()].map(val => <PageDot key={`dot-${val}`} isActive={val === currentPage}/>)}
+        </FadeDiv>
         
-        </motion.div>
-        
-        <motion.div
-          ref={scope}
-          className="todo-list-container"
-          initial={{opacity: 0, scale: 1.2}}
-          animate={{opacity: 1, scale: 1.0}}
-          exit={{opacity: 0, scale: 0.8}}
-          transition={{duration: 0.15}}
-        >
+        <FadeDiv ref={scope} className="todo-list-container">
           <TodoList clearSubject={clearSubject} todos={todos} pageIndex={currentPage}/>
-        </motion.div>
+        </FadeDiv>
         
         <TodoActions clearSubject={clearSubject} todos={todos} pageIndex={currentPage}/>
       
