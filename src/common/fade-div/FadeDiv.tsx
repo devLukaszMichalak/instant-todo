@@ -5,7 +5,7 @@ type Props = PropsWithChildren<{
   className: string
 }>;
 
-const FadeDiv = forwardRef(({className, children}: Props, ref: Ref<unknown>) => {
+const FadeDiv = forwardRef(({className, children}: Props, ref: Ref<HTMLDivElement>) => {
   
   return (
     <motion.div
