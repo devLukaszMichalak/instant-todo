@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Deploy to Firebase Hosting
           command: |
-            sudo bun install -g firebase-tools
+            bun install -g firebase-tools
             firebase deploy --only hosting
           environment:
             GOOGLE_APPLICATION_CREDENTIALS: "keys.json"
