@@ -37,7 +37,7 @@ function InputParser() {
     <FadeDiv className="input-container">
       <div>Enter here the text you want to make todos from:</div>
       <textarea
-        defaultValue={currentPageTodoText}
+        value={currentPageTodoText}
         onChange={handleInputChane}
       />
       <div className="input-buttons">
