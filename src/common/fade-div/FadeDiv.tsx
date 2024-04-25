@@ -14,7 +14,7 @@ const FadeDiv = forwardRef(({className, children}: Props, ref: Ref<HTMLDivElemen
       initial={{opacity: 0, scale: 1.2}}
       animate={{opacity: 1, scale: 1.0}}
       exit={{opacity: 0, scale: 0.8}}
-      transition={{duration: 0.15}}
+      transition={{ type: 'spring', stiffness: 200, damping: 20 , duration: 0.05}}
     >
       {children}
     </motion.div>
