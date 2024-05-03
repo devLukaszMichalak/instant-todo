@@ -1,11 +1,13 @@
 import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import InputParser from './input-parser/InputParser.tsx';
-import ShareParser from './share-parser/ShareParser.tsx';
-import TodoCarrousel from './todo-carrousel/TodoCarrousel.tsx';
 import { useAtomValue } from 'jotai';
 import { defaultRouteAtom } from './common/atoms/atoms.ts';
 import { AnimatePresence } from 'framer-motion';
+import { lazy } from 'react';
+
+const InputParser = lazy(() => import('./input-parser/InputParser.tsx'));
+const ShareParser = lazy(() => import('./share-parser/ShareParser.tsx'));
+const TodoCarrousel = lazy(() => import('./todo-carrousel/TodoCarrousel.tsx'));
 
 function App() {
   
