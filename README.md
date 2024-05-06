@@ -14,7 +14,6 @@ It's a PWA, so feel free to install it
 You can share the link and the whole state of the to-do list will be remembered!
 Keep in mind that editing resets the state
 
-# Screenshots of the app
+## Footage
 
-## Mobile
-<img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/5e84693e-4216-4115-9f01-424c12e31d46" width="200"> <img src="https://github.com/devLukaszMichalak/instant-todo/assets/48216995/c2851968-6e8a-4163-b79f-bf474131c063" width="200">
+https://github.com/devLukaszMichalak/instant-todo/assets/48216995/61579596-612e-4440-b9a3-4ef63589bf3b
