@@ -1,4 +1,4 @@
-import { IconStyle } from './icon-style.ts';
+import { IconStyle } from './IconStyle.ts';
 
 function ClearIcon({style}: { style: IconStyle }) {
   

@@ -4,11 +4,12 @@ import ClearIcon from '../common/icons/ClearIcon.tsx';
 import FadeDiv from '../common/fade-div/FadeDiv.tsx';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent } from 'react';
-import { IconStyle } from '../common/icons/icon-style.ts';
-import { currentPageAtom, defaultRouteAtom, pagesAtom } from '../common/atoms/atoms.ts';
+import { IconStyle } from '../common/icons/IconStyle.ts';
+import { currentPageAtom, defaultRouteAtom, pagesAtom } from '../common/atoms/Atoms.ts';
 import { useAtom, useAtomValue } from 'jotai';
-import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
+import { useCurrentPageTodoText } from '../common/hooks/UseCurrentPageTodoText.ts';
 import { useSetAtom } from 'jotai/index';
+import { removeIsKeyDone } from '../common/atoms/IsKeyDone.ts';
 
 function InputParser() {
   
@@ -21,13 +22,18 @@ function InputParser() {
   
   const handleSubmit = async () => {
     if (!pages.includes(currentPage)) {
-      setPages([...pages, currentPage]);
+      await setPages([...pages, currentPage]);
     }
-    setDefaultRoute('/display');
+    await setDefaultRoute('/display');
     navigate(`/display`);
   };
   
-  const handleClear = () => setCurrentPageTodoText('');
+  const handleClear = () => {
+    setCurrentPageTodoText('');
+    
+    Array.from({length: localStorage.length + 1}, (_, i) => i)
+      .forEach(index => removeIsKeyDone(index, currentPage));
+  };
   
   const handleInputChane = (e: ChangeEvent<HTMLTextAreaElement>) => setCurrentPageTodoText(e.target.value);
   
@@ -41,9 +47,9 @@ function InputParser() {
         onChange={handleInputChane}
       />
       <div className="input-buttons">
-        <button className="primary" disabled={isEmpty()} onClick={handleSubmit}><DoneIcon style={IconStyle.light}/>
+        <button className="primary" disabled={isEmpty()} onClick={handleSubmit}><DoneIcon style={IconStyle.LIGHT}/>
         </button>
-        <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.dark}/></button>
+        <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.DARK}/></button>
       </div>
     </FadeDiv>
   );

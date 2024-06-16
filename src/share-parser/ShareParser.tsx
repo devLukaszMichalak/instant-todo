@@ -1,9 +1,11 @@
+import './ShareParser.css';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { currentPageAtom, defaultRouteAtom, pageCountAtom, pagesAtom } from '../common/atoms/atoms.ts';
-import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
-import { setIsKeyDone } from '../common/atoms/is-done-key.ts';
+import { currentPageAtom, defaultRouteAtom, pageCountAtom, pagesAtom } from '../common/atoms/Atoms.ts';
+import { useCurrentPageTodoText } from '../common/hooks/UseCurrentPageTodoText.ts';
+import { setIsKeyDone } from '../common/atoms/IsKeyDone.ts';
+import { PulseLoader } from 'react-spinners';
 
 const ShareParser = () => {
   
@@ -25,14 +27,20 @@ const ShareParser = () => {
       .forEach(key => setIsKeyDone(key, pageCount, true));
     
     setCurrentPageTodoText(todoText);
-    setPages(pages.length !== 0 ? [...pages, pageCount] : [0]);
-    setCurrentPage(pageCount);
-    setDefaultRoute('/display');
     
-    navigate('/display');
-  }, [navigate, pageCount, pages, searchParams, setCurrentPage, setCurrentPageTodoText, setDefaultRoute, setPages, todoText]);
+    Promise.all([
+      setPages(pages.length !== 0 ? [...pages, pageCount] : [0]),
+      setCurrentPage(pageCount),
+      setDefaultRoute('/display')
+    ]).then(() => navigate('/display'));
+    
+  }, []);
   
-  return <>Loading...</>;
+  return <>
+    <div className="spinner-container">
+      <PulseLoader/>
+    </div>
+  </>;
 };
 
 export default ShareParser;

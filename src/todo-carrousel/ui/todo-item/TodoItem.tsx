@@ -15,9 +15,9 @@ function TodoItem({dbKey, todo, clear$}: Props) {
   useEffect(() => {
     const subscription = clear$.subscribe(() => setIsDone(false));
     return () => subscription.unsubscribe();
-  }, [clear$, setIsDone]);
+  }, [clear$]);
   
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>): void => setIsDone(e.target.checked);
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => setIsDone(e.target.checked);
   
   return (
     <div className="todo-container">

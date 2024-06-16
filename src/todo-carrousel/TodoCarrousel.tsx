@@ -1,9 +1,9 @@
 import './TodoCarrousel.css';
 import { useAtom, useAtomValue } from 'jotai';
-import { currentPageAtom, pageCountAtom } from '../common/atoms/atoms.ts';
+import { currentPageAtom, pageCountAtom } from '../common/atoms/Atoms.ts';
 import { Subject } from 'rxjs';
 import { useMemo } from 'react';
-import { useCurrentPageTodoText } from '../common/hooks/use-current-page-todo-text.ts';
+import { useCurrentPageTodoText } from '../common/hooks/UseCurrentPageTodoText.ts';
 import { SwipeCoordinates } from './ui/page-swiper/SwipeCords.ts';
 import { useAnimate } from 'framer-motion';
 import FadeDiv from '../common/fade-div/FadeDiv.tsx';
@@ -72,7 +72,7 @@ const TodoCarrousel = () => {
         </FadeDiv>
         
         <FadeDiv ref={scope} className="todo-list-container">
-          <TodoList clearSubject={clearSubject} todos={todos} pageIndex={currentPage}/>
+          <TodoList clear$={clearSubject.asObservable()} todos={todos} pageIndex={currentPage}/>
         </FadeDiv>
         
         <TodoActions clearSubject={clearSubject} todos={todos} pageIndex={currentPage}/>

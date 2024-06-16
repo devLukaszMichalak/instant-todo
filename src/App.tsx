@@ -1,7 +1,7 @@
 import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
-import { defaultRouteAtom } from './common/atoms/atoms.ts';
+import { defaultRouteAtom } from './common/atoms/Atoms.ts';
 import { AnimatePresence } from 'framer-motion';
 import { lazy } from 'react';
 

@@ -5,13 +5,13 @@ import EditIcon from '../../../common/icons/EditIcon.tsx';
 import ShareIcon from '../../../common/icons/ShareIcon.tsx';
 import PlusIcon from '../../../common/icons/PlusIcon.tsx';
 import FadeDiv from '../../../common/fade-div/FadeDiv.tsx';
-import { IconStyle } from '../../../common/icons/icon-style.ts';
-import { isKeyDone } from '../../../common/atoms/is-done-key.ts';
+import { IconStyle } from '../../../common/icons/IconStyle.ts';
+import { isKeyDone } from '../../../common/atoms/IsKeyDone.ts';
 import { Subject } from 'rxjs';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai/index';
-import { currentPageAtom, defaultRouteAtom, pageCountAtom, pagesAtom } from '../../../common/atoms/atoms.ts';
+import { currentPageAtom, defaultRouteAtom, pageCountAtom, pagesAtom } from '../../../common/atoms/Atoms.ts';
 import { useNavigate } from 'react-router-dom';
-import { useCurrentPageTodoText } from '../../../common/hooks/use-current-page-todo-text.ts';
+import { useCurrentPageTodoText } from '../../../common/hooks/UseCurrentPageTodoText.ts';
 
 type Props = {
   clearSubject: Subject<boolean>;
@@ -29,23 +29,23 @@ const TodoActions = ({clearSubject, todos, pageIndex}: Props) => {
   
   const [currentPageTodoText, setCurrentPageTodoText] = useCurrentPageTodoText(pageIndex);
   
-  const handleNavigateToEdit = () => {
-    setDefaultRoute('/edit');
+  const handleNavigateToEdit = async () => {
+    await setDefaultRoute('/edit');
     navigate(`/edit`);
   };
   
-  const handleNewPage = () => {
-    setCurrentPage(pageCount);
-    setDefaultRoute('/edit');
-    navigate(`/edit`);
-  };
+  const handleNewPage = () => Promise.all([
+    setCurrentPage(pageCount),
+    setDefaultRoute('/edit')
+  ]).then(() => navigate(`/edit`));
   
-  const handleRemove = () => {
+  
+  const handleRemove = async () => {
     clearSubject.next(true);
     const pagesWithoutCurrent = pages.filter(val => val !== pageIndex);
-    setPages(pagesWithoutCurrent);
+    await setPages(pagesWithoutCurrent);
     setCurrentPageTodoText('');
-    setCurrentPage(pagesWithoutCurrent.pop()!);
+    await setCurrentPage(pagesWithoutCurrent.pop()!);
   };
   
   const handleClear = () => clearSubject.next(true);
@@ -60,7 +60,7 @@ const TodoActions = ({clearSubject, todos, pageIndex}: Props) => {
     return params.slice(0, -1);
   }
   
-  const handleCopyShareLink = async () => {
+  const handleCopyShareLink = async (): Promise<void> => {
     const params = await makeSearchParams();
     const link: string = `https://instant-todos.web.app/share/${btoa(encodeURI(currentPageTodoText))}${params}`;
     
@@ -74,11 +74,11 @@ const TodoActions = ({clearSubject, todos, pageIndex}: Props) => {
   return (
     <FadeDiv className="todo-list-buttons">
       <button className="secondary" disabled={(pageIndex !== pageCount - 1) || pageCount === 1} onClick={handleRemove}>
-        <MinusIcon style={IconStyle.dark}/></button>
-      <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.dark}/></button>
-      <button className="primary" onClick={handleNavigateToEdit}><EditIcon style={IconStyle.light}/></button>
-      <button className="secondary" onClick={handleCopyShareLink}><ShareIcon style={IconStyle.dark}/></button>
-      <button className="secondary" onClick={handleNewPage}><PlusIcon style={IconStyle.dark}/></button>
+        <MinusIcon style={IconStyle.DARK}/></button>
+      <button className="secondary" onClick={handleClear}><ClearIcon style={IconStyle.DARK}/></button>
+      <button className="primary" onClick={handleNavigateToEdit}><EditIcon style={IconStyle.LIGHT}/></button>
+      <button className="secondary" onClick={handleCopyShareLink}><ShareIcon style={IconStyle.DARK}/></button>
+      <button className="secondary" onClick={handleNewPage}><PlusIcon style={IconStyle.DARK}/></button>
     </FadeDiv>
   );
 };
